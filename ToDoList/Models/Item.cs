@@ -1,9 +1,29 @@
+using System;
+using System.Collections.Generic;
 namespace ToDoList.Models
 {
   public class Item
   {
+    public string Description { get; set; }
+    private static List<Item> _instances = new List<Item> {};
 
-    // properties, methods, etc. will go here.
+    public Item(string description)
+    {
+      Description = description;
+      _instances.Add(this);
+    }
+    public static List<Item> GetAll()
+    {
+      if(_instances.Count == 0)
+      {
+        Console.WriteLine("No Items in List");
+      }
+      return _instances;
 
+    }
+    public static void ClearAll()
+    {
+      _instances.Clear();
+    }
   }
 }
